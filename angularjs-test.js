@@ -1,12 +1,8 @@
 var app = angular.module("module", ['ngRoute']);
 var controllers = {};
 
-controllers.SimpleController = function ($scope) {
-    $scope.customers = [
-        {name: 'Bob', city: 'New York', age: 'Twenty two'},
-        {name: 'Todd', city: 'LA', age: 'Thirty three'},
-        {name: 'Joe', city: 'Miami', age: 'Ninety'}
-    ];
+controllers.SimpleController = function ($scope, simpleFactory) {
+    $scope.customers = simpleFactory.getCustomers();
 
     $scope.addCustomer = function() {
         $scope.customers.push(
@@ -27,5 +23,20 @@ app.config(function($routeProvider) {
         .when('/age', {controller: 'SimpleController', templateUrl: 'age.html'})
         .when('/add', {controller: 'SimpleController', templateUrl: 'add.html'})
         .otherwise({redirectTo: '/'});
+});
+
+app.factory("simpleFactory", function()
+{
+    var customers = [
+        {name: 'Bob', city: 'New York', age: 'Twenty two'},
+        {name: 'Todd', city: 'LA', age: 'Thirty three'},
+        {name: 'Joe', city: 'Miami', age: 'Ninety'}
+    ];
+    var factory = {};
+    factory.getCustomers = function() {
+        return customers;
+    };
+
+    return factory;
 });
 
