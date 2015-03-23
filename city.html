@@ -1,0 +1,8 @@
+<div class="container">
+    <input type="text" data-ng-model="city"/>
+    <ul>
+        <li data-ng-repeat="customer in customers | filter:{city:city}">
+            {{customer.name}} - {{customer.city}} - {{customer.age}}
+        </li>
+    </ul>
+</div>

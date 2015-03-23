@@ -1,0 +1,17 @@
+<div class="container">
+    <ul>
+        <li data-ng-repeat="customer in customers">
+            {{customer.name}} - {{customer.city}} - {{customer.age}}
+        </li>
+    </ul>
+
+    Name:
+    <input type="text" data-ng-model="newCustomer.name"/>
+    City:
+    <input type="text" data-ng-model="newCustomer.city"/>
+    Age:
+    <input type="text" data-ng-model="newCustomer.age"/>
+
+    <button type="submit" data-ng-click="addCustomer()">Add</button>
+
+</div>
