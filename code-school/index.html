@@ -6,7 +6,35 @@
     <script src="code-school.js"></script>
 </head>
 <body>
-    {{ "hello" + "world"}}
+
+<div ng-controller="FoodController as foodController">
+    <ul>
+        <li ng-repeat="food in foodController.foods">
+            {{ food.name }} - {{food.rating}} - {{food.size}}
+        </li>
+    </ul>
+
+    <div>
+        New food<br/>
+        Name: {{foodController.newFood.name}}<br/>
+        Rating: {{foodController.newFood.rating}}<br/>
+        Size: {{foodController.newFood.size}}<br/>
+    </div>
+    <br/>
+    <div>
+        <form ng-submit="foodController.addFood()">
+            Name:
+            <input type="text" ng-model="foodController.newFood.name"/>
+            Rating:
+            <select ng-model="foodController.newFood.rating" ng-options="rating for rating in [1, 2, 3, 4, 5]"></select>
+            Size:
+            <div ng-repeat="size in ['Large', 'Medium', 'Small', 'Mini']">
+                <input ng-model="foodController.newFood.size" type="radio" name="foodSize" ng-value="size"/>{{size}}
+            </div>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+</div>
 </body>
 
 </html>
