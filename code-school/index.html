@@ -11,7 +11,7 @@
 <div ng-controller="FoodController as foodController">
     <ul>
         <li ng-repeat="food in foodController.foods">
-            {{ food.name }} - {{food.rating}} - {{food.size}}
+            {{ food.name }} - {{food.rating}} - {{food.size}} - {{food.createdOn | date}}
         </li>
     </ul>
 
@@ -22,25 +22,25 @@
         Size: {{foodController.newFood.size}}<br/>
     </div>
     <br/>
-    <div>
-        <form name="newFood" ng-submit="newFood.$valid && foodController.addFood()" novalidate>
-            Name:
-            <input type="text" ng-model="foodController.newFood.name" required/>
-            Rating:
-            <select ng-model="foodController.newFood.rating"
-                    ng-options="rating for rating in [1, 2, 3, 4, 5]" required>
+    <form name="newFood" ng-submit="newFood.$valid && foodController.addFood()" novalidate>
+        Name:
+        <input type="text" ng-model="foodController.newFood.name" required/>
+        Rating:
+        <select ng-model="foodController.newFood.rating"
+                ng-options="rating for rating in [1, 2, 3, 4, 5]" required>
 
-            </select>
-            Size:
+        </select>
+        Size:
+        <div>
             <div ng-repeat="size in ['Large', 'Medium', 'Small', 'Mini']">
                 <input ng-model="foodController.newFood.size"
                        type="radio" name="foodSize" ng-value="size" required/>{{size}}
             </div>
-            <button type="submit">Add</button>
-            <br/>
-            <div>Is valid? {{newFood.$valid}}</div>
-        </form>
-    </div>
+        </div>
+        <button type="submit">Add</button>
+        <br/>
+        <div>Is valid? {{newFood.$valid}}</div>
+    </form>
 </div>
 </body>
 

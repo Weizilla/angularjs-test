@@ -11,6 +11,7 @@ app.controller("FoodController", function(){
 
     this.addFood = function()
     {
+        this.newFood.createdOn = Date.now();
         this.foods.push(this.newFood);
         this.newFood = {}
     };
